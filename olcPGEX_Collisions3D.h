@@ -1,3 +1,15 @@
+/*
+
+OLC Pixel Game Engine 3D Collision Extension
+
+By: Jonathan Gerraughty
+
+YouTube Channel: https://www.youtube.com/channel/UCA-90PKeNS_1LWYiqSD2y1w
+
+License - CC0, but Credit is nice!
+
+*/
+
 #ifndef OLC_PGEX_COLLIDE3D
 #define OLC_PGEX_COLLIDE3D
 
@@ -15,14 +27,32 @@ namespace olc {
 		COLLIDE3D() {
 
 		}
-
+		
+		
+		//Polygon Main Class
 		struct polygon {
+			//Graphical Mesh for Screen Space
 			olc::GFX3D::mesh m;
+			
+			//Offset position for World Space
 			olc::GFX3D::vec3d pos;
+			
+			//Rotation Data for Matrix
 			float fTheta = 0.0f;
+			
+			
 			bool overlap = false;
+			
+			//Object Space Collision Detection stuff
 			std::vector<olc::GFX3D::vec3d> objectSpace;
 
+			
+			/*
+			
+			Update the Position of the Vertices in Object Space
+			TODO: Make this more streamlined.
+			
+			*/
 			void UpdatePositions() {
 				objectSpace.clear();
 
@@ -41,6 +71,8 @@ namespace olc {
 			}
 		};
 
+	//Conversion of Javid's 2D Separated Axis Theorem Code to 3D	
+		
 	static bool ShapeOverlap_SAT(polygon &r1, polygon &r2) {
 			polygon *poly1 = &r1;
 			polygon *poly2 = &r2;
